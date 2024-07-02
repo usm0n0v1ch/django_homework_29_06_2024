@@ -1,0 +1,71 @@
+{% extends 'hotel_app/layouts/base.html' %}
+{% block title %}Удалить бронирование{% endblock %}
+
+{% block style %}
+<style>
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    p {
+        padding: 20px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+    }
+
+    button, a {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover, a:hover {
+        background-color: #45a049;
+    }
+
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Удалить бронирование</h1>
+    <p>Вы уверены, что хотите удалить бронирование для комнаты {{ reservation.room }} с {{ reservation.start }} по {{ reservation.end }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'my_reserves' %}" class="btn">Отмена</a>
+    </form>
+</div>
+{% endblock %}

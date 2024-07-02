@@ -1,0 +1,67 @@
+{% extends 'hotel_app/layouts/base.html' %}
+
+{% block title %}Подтверждение удаления{% endblock %}
+
+{% block style %}
+<style>
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+
+    h2 {
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Вы уверены, что хотите удалить тип комнаты "{{ room_type.name }}"?</h2>
+    <form action="{% url 'room_type_delete' room_type_id=room_type.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

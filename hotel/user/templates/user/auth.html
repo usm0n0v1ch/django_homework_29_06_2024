@@ -1,0 +1,78 @@
+{% extends 'hotel_app/layouts/base.html' %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block style %}
+<style>
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    form {
+        margin-bottom: 20px;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    form input[type="text"],
+    form input[type="password"],
+    form button {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    form button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    form button:hover {
+        background-color: #45a049;
+    }
+
+    div.register-link {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    div.register-link a {
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    div.register-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Вход</button>
+    </form>
+    <div class="register-link">
+        Если у вас нет аккаунта, нажмите кнопку: <a href="{% url 'register' %}">Зарегистрироваться</a>
+    </div>
+</div>
+{% endblock %}

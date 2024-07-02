@@ -1,0 +1,57 @@
+{% extends 'hotel_app/layouts/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block style %}
+<style>
+
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        background-color: #4CAF50;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+        border-radius: 5px 5px 0 0;
+    }
+
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    p a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    p a:hover {
+        background-color: #45a049;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Профиль</h1>
+    <p>{{ user.username }}</p>
+    <p><a href="{% url 'logout' %}">Выход</a></p>
+    <p><a href="{% url 'home' %}">Далее</a></p>
+</div>
+{% endblock %}

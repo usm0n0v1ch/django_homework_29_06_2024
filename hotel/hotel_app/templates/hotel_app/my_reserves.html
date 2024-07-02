@@ -1,0 +1,101 @@
+{% extends 'hotel_app/layouts/base.html' %}
+
+{% block title %}Мои бронирования{% endblock %}
+
+{% block style %}
+<style>
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
+
+    header {
+        background-color: #4CAF50;
+        padding: 20px;
+        color: white;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    header ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    header ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    header ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    header ul li a:hover {
+        text-decoration: underline;
+    }
+
+    main {
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    ul li strong {
+        margin-right: 10px;
+    }
+
+    ul li a {
+        margin-left: 10px;
+        color: #4CAF50;
+        text-decoration: none;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Ваши бронирования</h1>
+    <ul>
+        {% for reservation in reservations %}
+        <li>
+            <strong>Комнаты:</strong>
+            <ul>
+                {% for room in reservation.rooms.all %}
+                <li>{{ room }}</li>
+                {% endfor %}
+            </ul>
+            <strong>Дата:</strong> {{ reservation.start }} - {{ reservation.end }}
+            <a href="{% url 'reservation_edit' reservation.id %}">Редактировать</a>
+            <a href="{% url 'reservation_delete' reservation.id %}">Удалить</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'home' %}">Назад</a>
+</div>
+{% endblock %}
